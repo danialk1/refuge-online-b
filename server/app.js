@@ -6,7 +6,7 @@ const app = express();
 
 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey("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");
+sgMail.setApiKey('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');
 
 const msg = {
   to: 'ulfzswtfckbmveuida@ttirv.org',
