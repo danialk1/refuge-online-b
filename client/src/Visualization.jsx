@@ -33,13 +33,7 @@ export default function Visualization(props) {
 
   return (
     <div>
-      <AreaChart
-        data={data}
-        xtitle="Date"
-        ytitle="Population"
-        min={0}
-        title={`Past ${props.days} days for ${fullName(props.state)}`}
-      />
+      <h1>Hello, world</h1>
     </div>
   );
 }

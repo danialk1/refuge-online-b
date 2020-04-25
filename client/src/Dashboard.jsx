@@ -64,19 +64,8 @@ function InputCard(props) {
   };
 
   const displayEntry = () => {
-    if (entry.state && entry.days) {
-      return <Visualization state={entry.state} days={entry.days} />;
-    }
-    return <div></div>;
+    return <Visualization state={entry.state} days={entry.days} />;
   };
-
-  // const displayPastEntries = () => {
-  //   const output = [];
-  //   pastEntries.forEach((e) => {
-  //     output.unshift(<Visualization state={e.state} days={e.days} />);
-  //   });
-  //   return output;
-  // };
 
   return (
     <div>
