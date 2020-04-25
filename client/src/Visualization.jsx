@@ -8,7 +8,7 @@ export default function Visualization(props) {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const endpoint = `https://covidtracking.com/api/v1/states/${props.state}/daily.json`;
+    //const endpoint = `https://covidtracking.com/api/v1/states/${props.state}/daily.json`;
     const endpoint = `https://newsapi.org/v2/top-headlines?country=us&apiKey=061b8a772e554622b72becb9277d12cc`;
     axios
       .get(endpoint.articles)
@@ -19,7 +19,7 @@ export default function Visualization(props) {
           headline.data[e.url] = e.title;
           article.data[e.url] = e.content;
         });
-        setData([healine, article]);
+        setData([headline, article]);
       })
       .catch((err) => {
         console.log(err);

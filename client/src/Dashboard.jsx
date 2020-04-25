@@ -70,13 +70,13 @@ function InputCard(props) {
     return <div></div>;
   };
 
-  const displayPastEntries = () => {
-    const output = [];
-    pastEntries.forEach((e) => {
-      output.unshift(<Visualization state={e.state} days={e.days} />);
-    });
-    return output;
-  };
+  // const displayPastEntries = () => {
+  //   const output = [];
+  //   pastEntries.forEach((e) => {
+  //     output.unshift(<Visualization state={e.state} days={e.days} />);
+  //   });
+  //   return output;
+  // };
 
   return (
     <div>
@@ -103,7 +103,6 @@ function InputCard(props) {
             </Button>
           </CardActions>
         </Card>
-
         <div>{displayEntry()}</div>
         <ExpansionPanel>
           <ExpansionPanelSummary
@@ -113,7 +112,6 @@ function InputCard(props) {
           >
             Past Visualizations
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>{displayPastEntries()}</ExpansionPanelDetails>
         </ExpansionPanel>
       </Container>
     </div>
