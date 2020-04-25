@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose")
+const app = express();
 
 
 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(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);
+sgMail.setApiKey("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");
 
 const msg = {
   to: 'ulfzswtfckbmveuida@ttirv.org',
@@ -14,7 +15,24 @@ const msg = {
   text: 'Hello plain world!',
   html: '<p>Hello HTML world!</p>',
 };
-sgMail.send(msg);
+
+sgMail.send(msg).then(() => {
+    // Celebrate
+  })
+  .catch(error => {
+    // Log friendly error
+    console.error(error);
+
+    if (error.response) {
+      // Extract error msg
+      const {message, code, response} = error;
+
+      // Extract response msg
+      const {headers, body} = response;
+
+      console.error(body);
+    }
+  });
 
 
 // Express middleware
