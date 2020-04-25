@@ -21,7 +21,6 @@ import {
   Button,
 } from "@material-ui/core";
 import axios from "axios";
-import states from "./us_states";
 
 const styles = {
   card: {
@@ -38,51 +37,24 @@ const styles = {
 
 function InputCard(props) {
   const { classes } = props;
-  const [entry, setEntry] = useState({ state: "", days: 0 });
-  const [pastEntries, setPastEntries] = useState([]);
-  const [state, setState] = useState("");
-  const [days, setDays] = useState("");
+  const [message, setMessage] = useState("");
 
-  useEffect(() => {
+  const sendMessage = () => {
     axios
-      .get("/entries")
+      .post("/send", {message: message})
       .then((res) => {
-        setPastEntries(res.data);
+        console.log(res)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [entry]);
-
-  const addEntry = () => {
-    const entry = {
-      state: state,
-      days: days,
-    };
-    setEntry(entry);
-    axios.post("/save", entry);
-  };
-
-  const displayEntry = () => {
-    if (entry.state && entry.days) {
-      return <Visualization state={entry.state} days={entry.days} />;
-    }
-    return <div></div>;
-  };
-
-  const displayPastEntries = () => {
-    const output = [];
-    pastEntries.forEach((e) => {
-      output.unshift(<Visualization state={e.state} days={e.days} />);
-    });
-    return output;
-  };
+  }
 
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Visualizations</Typography>
+          <Typography variant="h6">Some kind of title here I guess becuase because visuaizations doesn't really work now does it</Typography>
         </Toolbar>
       </AppBar>
       <Container>
@@ -92,29 +64,16 @@ function InputCard(props) {
             <TextField
             id="standard-basic"
             label="Search for news here"
-            value={days}
-            onChange={(e) => setDays(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
             >
             </TextField>
           </CardContent>
           <CardActions className={classes.cardActions}>
-            <Button onClick={addEntry} color="primary">
+            <Button onClick={sendMessage} color="primary">
               Search
             </Button>
           </CardActions>
         </Card>
-
-        <div>{displayEntry()}</div>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            Past Visualizations
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>{displayPastEntries()}</ExpansionPanelDetails>
-        </ExpansionPanel>
       </Container>
     </div>
   );
