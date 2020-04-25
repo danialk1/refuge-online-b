@@ -9,16 +9,17 @@ export default function Visualization(props) {
 
   useEffect(() => {
     const endpoint = `https://covidtracking.com/api/v1/states/${props.state}/daily.json`;
+    const endpoint = `https://newsapi.org/v2/top-headlines?country=us&apiKey=061b8a772e554622b72becb9277d12cc`;
     axios
-      .get(endpoint)
+      .get(endpoint.articles)
       .then((res) => {
-        const totalCases = { name: "Total cases", data: {} };
-        const newCases = { name: "New cases", data: {} };
-        res.data.slice(0, props.days).forEach((e) => {
-          totalCases.data[e.date] = e.positive;
-          newCases.data[e.date] = e.positiveIncrease;
+        const headline = { name: "Headline", data: {} };
+        const article = { name: "Article", data: {} };
+        res.data.forEach((e) => {
+          headline.data[e.url] = e.title;
+          article.data[e.url] = e.content;
         });
-        setData([totalCases, newCases]);
+        setData([healine, article]);
       })
       .catch((err) => {
         console.log(err);
