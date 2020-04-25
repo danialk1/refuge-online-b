@@ -8,31 +8,33 @@ const app = express();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
-const msg = {
-  to: 'danialk1@berkeley.edu',
-  from: 'danialk1@berkeley.edu',
-  subject: 'Hello world',
-  text: 'Hello plain world!',
-  html: '<p>Hello HTML world!</p>',
-};
 
-sgMail.send(msg).then(() => {
-    // Celebrate
-  })
-  .catch(error => {
-    // Log friendly error
-    console.error(error);
+const sendMessage = (from, to, title, message) => {
+  const msg = {
+    to: to,
+    from: from,
+    subject: title,
+    text: message, //find a way to parse mesasges
+    //html: '<p>Hello HTML world!</p>',
+  };
+  sgMail.send(msg).then(() => {
+      // Celebrate
+    })
+    .catch(error => {
+      // Log friendly error
+      console.error(error);
 
-    if (error.response) {
-      // Extract error msg
-      const {message, code, response} = error;
+      if (error.response) {
+        // Extract error msg
+        const {message, code, response} = error;
 
-      // Extract response msg
-      const {headers, body} = response;
+        // Extract response msg
+        const {headers, body} = response;
 
-      console.error(body);
-    }
-  });
+        console.error(body);
+      }
+    });
+}
 
 
 // Express middleware
@@ -57,15 +59,14 @@ const Entry = mongoose.model('Entry', {
   days: Number
 });
 
-app.get("/entries", (req, res) => {
-  Entry.find()
-    .then(entries => res.send(entries))
-});
 
-app.post("/save", (req, res) => {
+app.post("/send", (req, res) => {
+  sendMessage('danialk1@berkeley.edu', 'danialk1@berkeley.edu', 'A new message from Danial', req.body.message);
+  console.log(req.body.message)
+  /*
   const entry = new Entry(req.body)
   entry.save()
-    .then(entry => res.send(`Saved ${entry} to database`));
+    .then(entry => res.send(`Saved ${entry} to database`)); */
 });
 
 app.listen(port, () => console.log(`App running on port ${port}`));

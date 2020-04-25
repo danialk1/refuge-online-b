@@ -4,7 +4,7 @@ import "chart.js";
 import axios from "axios";
 import states from "./us_states.json";
 
-export default function Visualization(props) {
+export default function Visualization() {
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Visualization(props) {
 
   return (
     <div>
-      <h1>Hello, world</h1>
+      <h1>Insert news here lmao</h1>
     </div>
   );
 }
