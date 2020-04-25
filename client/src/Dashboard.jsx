@@ -87,34 +87,19 @@ function InputCard(props) {
       </AppBar>
       <Container>
         <Card className={classes.card}>
-          <CardHeader title="Visualize COVID-19 Data Per State" />
+          <CardHeader title="Your favorite fake news website!" />
           <CardContent>
             <TextField
-              id="state-select"
-              select
-              label="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              helperText="Please select a state"
+            id="standard-basic"
+            label="Search for news here"
+            value={days}
+            onChange={(e) => setDays(e.target.value)}
             >
-              {states.map((option) => (
-                <MenuItem key={option.abbreviation} value={option.abbreviation}>
-                  {option.name}
-                </MenuItem>
-              ))}
             </TextField>
-            <Divider className={classes.divider} variant="middle" />
-            <TextField
-              id="standard-basic"
-              label="Number of days"
-              helperText="Please enter the number of days"
-              value={days}
-              onChange={(e) => setDays(e.target.value)}
-            />
           </CardContent>
           <CardActions className={classes.cardActions}>
             <Button onClick={addEntry} color="primary">
-              Add Visualization
+              Search
             </Button>
           </CardActions>
         </Card>
