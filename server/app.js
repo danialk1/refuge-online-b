@@ -8,8 +8,8 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(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);
 
 const msg = {
-  to: 'recipient@example.org',
-  from: 'sender@example.org',
+  to: 'ulfzswtfckbmveuida@ttirv.org',
+  from: 'eecseecs@berkeley.edu',
   subject: 'Hello world',
   text: 'Hello plain world!',
   html: '<p>Hello HTML world!</p>',
