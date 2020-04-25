@@ -1,7 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose")
-const app = express();
+
+
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(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);
+
+const msg = {
+  to: 'recipient@example.org',
+  from: 'sender@example.org',
+  subject: 'Hello world',
+  text: 'Hello plain world!',
+  html: '<p>Hello HTML world!</p>',
+};
+sgMail.send(msg);
+
 
 // Express middleware
 app.use(cors());
