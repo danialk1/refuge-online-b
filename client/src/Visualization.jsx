@@ -40,7 +40,6 @@ const Visualization = () => {
         <a href={article.url}>read more</a>
         </div>
       }) }
-      {newsListings}
     </div>
   );
 };
