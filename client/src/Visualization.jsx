@@ -32,8 +32,12 @@ const Visualization = () => {
   return (
     <div>
       <h1>Insert news here lmao</h1>
-      {data.map((articles) => {
-        return <div> {articles.author} </div>
+      {data.map((article) => {
+        return <div>
+        <h2>{article.title}</h2>
+        <h4>{article.author}</h4>
+        <p>{article.content}</p>
+        </div>
       }) }
       {newsListings}
     </div>
