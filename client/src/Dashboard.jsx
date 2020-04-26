@@ -49,8 +49,8 @@ function InputCard(props) {
         console.log(err);
       });
   }
-  const displayEntry = () => {
-    return <Visualization state={null} days={null} />;
+  const displayVisualization = () => {
+    return <Visualization/>; //keywords = {keywords}, if we ever get there
   };
 
 
@@ -78,7 +78,7 @@ function InputCard(props) {
             </Button>
           </CardActions>
         </Card>
-        <div>{displayEntry()}</div>
+        <div>{displayVisualization()}</div>
       </Container>
     </div>
   );
