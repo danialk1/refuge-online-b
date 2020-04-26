@@ -50,7 +50,7 @@ function InputCard(props) {
       });
   }
   const displayEntry = () => {
-    return <Visualization/>;
+    return <Visualization state={null} days={null} />;
   };
 
 
