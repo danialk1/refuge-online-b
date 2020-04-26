@@ -37,6 +37,7 @@ const Visualization = () => {
         <h2>{article.title}</h2>
         <h4>{article.author}</h4>
         <p>{article.content}</p>
+        <a href={article.url}>read more</a>
         </div>
       }) }
       {newsListings}
