@@ -112,11 +112,27 @@ db.on('error', console.error.bind(console, 'connection error:'));
 app.post("/send", (req, res) => {
   //sendMessage('danialk1@berkeley.edu', 'danialk1@berkeley.edu', 'A new message from Danial', req.body.message);
   console.log(req.body.message);
-  saveMessage(req.body.isHelper, req.body.message);
+  saveMessage(false, req.body.message);
   /*
   const entry = new Entry(req.body)
   entry.save()
     .then(entry => res.send(`Saved ${entry} to database`)); */
 });
+app.get("/messages", (req, res) => {
+  Conversation.find({}).exec((err, convos) => {
+    if (err) {
+      return console.log(err);
+    }
+    arrOfMessages = convos[0].ListoConvos
+    arrOfMessages.reverse();
+    logs = "";
+    arrOfMessages.forEach((item) => {
+      logs += "from:" + item.from;
+      logs += "<br>" + item.contents;
+      logs += "<br><br>"
+    });
+    res.send(logs);
+  })
+})
 
 app.listen(port, () => console.log(`App running on port ${port}`));
