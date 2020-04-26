@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, componentDidMount, setState } from "react";
 import axios from "axios";
 
-const Visualization = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
+class Visualization extends React.Component {
+  constructor(props) {
     //const endpoint = `https://covidtracking.com/api/v1/states/${props.state}/daily.json`;
-    const endpoint = `https://newsapi.org/v2/top-headlines?country=us&apiKey=061b8a772e554622b72becb9277d12cc`;
-    console.log(endpoint);
+    super(props);
+    this.state = {}
+    const endpoint = `https://newsapi.org/v2/top-headlines?country=us&apiKey=e89acd59088e4acdb287f6a0312e17bf `;
     axios
       .get(endpoint)
       .then((res) => {
-        const article = { name: "Article", data: {} };
-        setData(() => res.data.articles);
-      })
+        const processedData = res.data.articles.map((article) => {
+          return (<newsDisplay
+          title={article.title}
+          content={article.content}
+          />)
+        });
+        this.state = {data: processedData};
+    })
       .catch((err) => {
         console.log(err);
-        alert("Invalid inputs");
       });
-  });
-  const newsListings = data.map((article) => {
-    return (<newsDisplay
-    title={article.title}
-    content={article.content}
-    />)
-  });
+      setTimeout(alert(JSON.stringify(this.state, 4, null)), 5000);
+  };
+
+
+render() {
   return (
     <div>
       <h1>Insert news here lmao</h1>
-      {newsListings}
+      {this.state.data}
     </div>
-  );
+  );}
 };
 export default Visualization;
