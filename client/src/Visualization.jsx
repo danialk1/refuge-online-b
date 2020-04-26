@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {
+  Divider,
+  Button,
+} from "@material-ui/core";
 
 const Visualization = () => {
   const [data, setData] = useState([]);
@@ -21,7 +25,7 @@ const Visualization = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{backgroundColor: "lightcyan"}}>
       <h2></h2>
       <h1 style={{color: "blue", backgroundColor: "lightblue"}}>Today's News</h1>
       {data.map((article) => {
@@ -29,7 +33,9 @@ const Visualization = () => {
         <h2 style={{color: "red"}}>{article.title}</h2>
         <h4 style={{color: "grey"}}>{article.author}</h4>
         <p>{article.content}</p>
-        <a href={article.url}>read more</a>
+        <Button style={{backgroundColor: "lightblue"}} href={article.url}>read more</Button>
+        <p> </p>
+        <Divider></Divider>
         </div>
       }) }
     </div>

@@ -66,7 +66,7 @@ function InputCard(props) {
         </Toolbar>
       </AppBar>
       <Container>
-        <Card className={classes.card} style={{backgroundColor: "lightblue"}}>
+        <Card className={classes.card}>
           <CardHeader title="Your go to news website for everything." />
           <CardContent>
             <TextField
