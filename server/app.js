@@ -123,6 +123,9 @@ app.get("/messages", (req, res) => {
     if (err) {
       return console.log(err);
     }
+    if (convos.length === 0) {
+      return "";
+    }
     arrOfMessages = convos[0].ListoConvos
     arrOfMessages.reverse();
     logs = "";

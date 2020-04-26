@@ -22,11 +22,12 @@ const Visualization = () => {
 
   return (
     <div>
-      <h1>Insert news here lmao</h1>
+      <h2></h2>
+      <h1 style={{color: "blue", backgroundColor: "lightblue"}}>Today's News</h1>
       {data.map((article) => {
         return <div>
-        <h2>{article.title}</h2>
-        <h4>{article.author}</h4>
+        <h2 style={{color: "red"}}>{article.title}</h2>
+        <h4 style={{color: "grey"}}>{article.author}</h4>
         <p>{article.content}</p>
         <a href={article.url}>read more</a>
         </div>

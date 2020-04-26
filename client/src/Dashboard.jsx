@@ -62,12 +62,12 @@ function InputCard(props) {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Some kind of title here I guess becuase because visuaizations doesn't really work now does it</Typography>
+          <Typography variant="h6">The American Advocate</Typography>
         </Toolbar>
       </AppBar>
       <Container>
         <Card className={classes.card}>
-          <CardHeader title="Your favorite fake news website!" />
+          <CardHeader title="Your go to news website for everything." />
           <CardContent>
             <TextField
             id="standard-basic"
