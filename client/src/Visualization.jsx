@@ -20,14 +20,6 @@ const Visualization = () => {
       });
   }, []);
 
-
-  const newsListings = data.map((article) => {
-    return (<newsDisplay
-    title={article.title}
-    content={article.content}
-    />)
-  });
-
   return (
     <div>
       <h1>Insert news here lmao</h1>

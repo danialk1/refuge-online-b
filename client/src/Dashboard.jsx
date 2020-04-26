@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Visualization from "./Visualization";
+import Textbox from "./Textbox";
 import "./App.css";
 import { withStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -82,6 +83,7 @@ function InputCard(props) {
           </CardActions>
         </Card>
         <Visualization/>
+        <Textbox/>
       </Container>
     </div>
   );
