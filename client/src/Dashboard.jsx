@@ -40,6 +40,7 @@ function InputCard(props) {
   const { classes } = props;
   const [message, setMessage] = useState("");
 
+<<<<<<< HEAD
   const sendMessage = () => {
     axios
       .post("/send", {
@@ -57,6 +58,36 @@ function InputCard(props) {
     return <Visualization/>; //keywords = {keywords}, if we ever get there
   };
 
+=======
+  useEffect(() => {
+    // TODO: Get all past entries
+  });
+
+  const addEntry = () => {
+    const entry = {
+      state: state,
+      days: days,
+    };
+    setEntry(entry);
+    setPastEntries([entry, ...pastEntries]);
+    // TODO: Save this visualization somewhere
+  };
+
+  const displayEntry = () => {
+    if (entry.state && entry.days) {
+      return <Visualization state={entry.state} days={entry.days} />;
+    }
+    return <div></div>;
+  };
+
+  const displayPastEntries = () => {
+    const output = [];
+    pastEntries.forEach((e) => {
+      output.push(<Visualization state={e.state} days={e.days} />);
+    });
+    return output;
+  };
+>>>>>>> master
 
   return (
     <div>
