@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const app = express();
 
 
@@ -8,8 +8,25 @@ const app = express();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
 
+const Schema = mongoose.Schema;
+const ConvoSchema = new Schema({
+  helper: String,
+  helpee: String,
+  ListoConvos: [{
+    from: String,
+    to: String,
+    contents: String
+  }]
+})
+const MessageSchema = new Schema({
+  contents: String,
+  from: String
+})
 
+const Conversation = mongoose.model('Conversation', ConvoSchema);
+const Message = mongoose.model('message', MessageSchema);
 const sendMessage = (from, to, title, message) => {
+
   const msg = {
     to: to,
     from: from,
@@ -35,6 +52,36 @@ const sendMessage = (from, to, title, message) => {
       }
     });
 }
+const saveMessage = (helperBool, message) => {
+  Conversation.find({}).exec((err, convos) => {
+    if (err) {
+      return console.log(err)
+    }
+    const _from = helperBool?"helper":'helpee';
+    const _to = (!helperBool)?"helper":'helpee';
+    if (convos.length === 0) {
+      convo = new Conversation({
+        helper: helperBool,
+        ListoConvos: [{
+          from: _from,
+          to: _to,
+          contents: message
+        }]
+      })
+    } else {
+      messageObj = {
+        from: _from,
+        to: _to,
+        contents: message
+      };
+      convos[0].ListoConvos.push(messageObj);
+      convos[0].save()
+      .then(item => console.log(item)).catch(err => "AN ERROR IS HERE")
+      console.log(convos[0].ListoConvos);
+      //save?
+    }
+  })
+}
 
 
 // Express middleware
@@ -45,24 +92,27 @@ app.use(express.json());
 // Feel free to change port
 const port = 8000;
 
-mongoose.connect("mongodb://localhost:27017", {
+mongoose.connect('mongodb://localhost:27017/example', {
   useUnifiedTopology: true,
   useNewUrlParser: true
 })
-
+mess = new Message({
+  contents: "THis is a message",
+  from: "Someone"
+})
+//mess.save()
+//.then(item => console.log(item)).catch(err => "AN ERROR IS HERE")
 db = mongoose.connection;
 db.once('open', () => console.log("Connected to database."));
 db.on('error', console.error.bind(console, 'connection error:'));
 
-const Entry = mongoose.model('Entry', {
-  state: String,
-  days: Number
-});
 
+//app.post("/")
 
 app.post("/send", (req, res) => {
-  sendMessage('danialk1@berkeley.edu', 'danialk1@berkeley.edu', 'A new message from Danial', req.body.message);
-  console.log(req.body.message)
+  //sendMessage('danialk1@berkeley.edu', 'danialk1@berkeley.edu', 'A new message from Danial', req.body.message);
+  console.log(req.body.message);
+  saveMessage(req.body.isHelper, req.body.message);
   /*
   const entry = new Entry(req.body)
   entry.save()

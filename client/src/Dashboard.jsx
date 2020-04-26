@@ -41,7 +41,10 @@ function InputCard(props) {
 
   const sendMessage = () => {
     axios
-      .post("/send", {message: message})
+      .post("/send", {
+        isHelper: false,
+        message: message
+      })
       .then((res) => {
         console.log(res)
       })

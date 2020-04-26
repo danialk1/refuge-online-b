@@ -28,7 +28,6 @@ const Visualization = () => {
     />)
   });
 
-  console.log(data);
   return (
     <div>
       <h1>Insert news here lmao</h1>
