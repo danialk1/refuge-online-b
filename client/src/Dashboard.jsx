@@ -78,7 +78,7 @@ function InputCard(props) {
             </Button>
           </CardActions>
         </Card>
-        <div>{displayVisualization()}</div>
+        <Visualization/>
       </Container>
     </div>
   );

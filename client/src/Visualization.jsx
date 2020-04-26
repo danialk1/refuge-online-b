@@ -18,16 +18,23 @@ const Visualization = () => {
         console.log(err);
         alert("Invalid inputs");
       });
-  });
+  }, []);
+
+
   const newsListings = data.map((article) => {
     return (<newsDisplay
     title={article.title}
     content={article.content}
     />)
   });
+
+  console.log(data);
   return (
     <div>
       <h1>Insert news here lmao</h1>
+      {data.map((articles) => {
+        return <div> {articles.author} </div>
+      }) }
       {newsListings}
     </div>
   );
