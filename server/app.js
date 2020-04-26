@@ -110,7 +110,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 //app.post("/")
 
 app.post("/send", (req, res) => {
-  //sendMessage('danialk1@berkeley.edu', 'danialk1@berkeley.edu', 'A new message from Danial', req.body.message);
+  sendMessage('danialk1@berkeley.edu', 'danialk1@berkeley.edu', 'A new message from Danial', req.body.message);
   console.log(req.body.message);
   saveMessage(req.body.isHelper, req.body.message);
   /*
