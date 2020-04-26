@@ -67,11 +67,11 @@ function InputCard(props) {
       </AppBar>
       <Container>
         <Card className={classes.card}>
-          <CardHeader title="Chat using this box" />
+          <CardHeader title= "Here's how we help those in a crisis" />
           <CardContent>
             <TextField
             id="standard-basic"
-            label="Search for news here"
+            label="Chat using this box"
             onChange={(e) => setMessage(e.target.value)}
             >
             </TextField>
@@ -82,7 +82,6 @@ function InputCard(props) {
             </Button>
           </CardActions>
         </Card>
-        <Visualization/>
         <Textbox/>
       </Container>
     </div>

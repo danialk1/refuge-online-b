@@ -14,7 +14,7 @@ export default function Textbox(props) {
   }
   getMessages();
   return(
-       <div className="Container" style={{ color: 'white' }} dangerouslySetInnerHTML={{__html:
+       <div className="Container" dangerouslySetInnerHTML={{__html:
         messages.data}}></div>
     );
 }
